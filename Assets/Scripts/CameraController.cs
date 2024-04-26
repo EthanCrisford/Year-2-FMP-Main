@@ -19,11 +19,5 @@ namespace FMP.ARPG
         {
             
         }
-
-        private void OnDrawGizmosSelected()
-        {
-            Gizmos.color = Color.green;
-            Gizmos.DrawLine(transform.position, hit.transform.position);
-        }
     }
 }
