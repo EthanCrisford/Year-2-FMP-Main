@@ -14,6 +14,8 @@ namespace FMP.ARPG
         private NavMeshAgent agent = null;
         private Camera cam = null;
 
+        public Animator animator;
+
         private void Start()
         {
             cam = Camera.main;
@@ -33,6 +35,8 @@ namespace FMP.ARPG
         private void Update()
         {
             HandleInput();
+
+            animator.SetFloat("Move", agent.velocity.magnitude);
         }
 
         private void HandleInput()
@@ -52,10 +56,7 @@ namespace FMP.ARPG
         private void PlayerMove(Vector3 location)
         {
             agent.SetDestination(location);
+            
         }
-
-
-
-
     }
 }
