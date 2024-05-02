@@ -2,14 +2,17 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.AI;
 using System;
+using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 namespace FMP.ARPG
 {
     public class PlayerController : MonoBehaviour
     {
         [SerializeField] private InputAction movement = new InputAction();
-
         [SerializeField] private LayerMask layerMask = new LayerMask();
+
+        public Collider player;
 
         private NavMeshAgent agent = null;
         private Camera cam = null;
@@ -18,6 +21,7 @@ namespace FMP.ARPG
 
         private void Start()
         {
+            player = GetComponent<Collider>();
             cam = Camera.main;
             agent = GetComponent<NavMeshAgent>();
         }
@@ -56,7 +60,14 @@ namespace FMP.ARPG
         private void PlayerMove(Vector3 location)
         {
             agent.SetDestination(location);
-            
+        }
+
+        public void OnTriggerEnter(Collider player)
+        {
+            if (player.gameObject.tag == "Portal")
+            {
+                SceneManager.LoadScene(1);
+            }
         }
     }
 }
