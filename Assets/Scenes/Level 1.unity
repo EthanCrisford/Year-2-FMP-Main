@@ -10848,6 +10848,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   player: {fileID: 397314820}
+  agent: {fileID: 0}
   animator: {fileID: 397314819}
 --- !u!4 &1273380501
 Transform:
@@ -10892,6 +10893,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8507778b9440c624a9887cb005e42852, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackRange: 2.5
 --- !u!1 &1347174380
 GameObject:
   m_ObjectHideFlags: 0

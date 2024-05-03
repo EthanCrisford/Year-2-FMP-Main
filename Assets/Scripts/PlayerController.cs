@@ -14,7 +14,7 @@ namespace FMP.ARPG
 
         public Collider player;
 
-        private NavMeshAgent agent = null;
+        [SerializeField] public NavMeshAgent agent = null;
         private Camera cam = null;
 
         public Animator animator;
@@ -57,8 +57,9 @@ namespace FMP.ARPG
             }
         }
 
-        private void PlayerMove(Vector3 location)
+        public void PlayerMove(Vector3 location)
         {
+            agent.isStopped = false;
             agent.SetDestination(location);
         }
 
@@ -68,6 +69,11 @@ namespace FMP.ARPG
             {
                 SceneManager.LoadScene(1);
             }
+        }
+
+        internal void Stop()
+        {
+            agent.isStopped = true;
         }
     }
 }
