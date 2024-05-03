@@ -1,13 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography;
 using UnityEngine;
 
 public class InteractInput : MonoBehaviour
 {
     [SerializeField] TMPro.TextMeshProUGUI textOnScreen;
+    public AnimationHandler animationHandler;
 
-    InteractableObjects hoveringOverObject;
+    [HideInInspector]
+    public InteractableObjects hoveringOverObject;
 
     void Update()
     {
@@ -18,6 +17,18 @@ public class InteractInput : MonoBehaviour
             if (hoveringOverObject != null)
             {
                 hoveringOverObject.Interact();
+                animationHandler.Pickup(hoveringOverObject);
+            }
+        }
+
+        CheckInteractObject();
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            if (hoveringOverObject != null)
+            {
+                hoveringOverObject.Interact();
+                animationHandler.Attack(hoveringOverObject);
             }
         }
     }
