@@ -170,7 +170,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 1
   far clip plane: 1000
   field of view: 55
   orthographic: 0
@@ -5893,8 +5893,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9b8e36eafc4bc4ca87cdec778cae0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  postMessage: Sword
-  objectName: Sword
+  postMessage: 
+  objectName: 
 --- !u!4 &1246700517 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ad0b9f4154d86114e9ca7da76a64414e, type: 3}
@@ -10806,7 +10806,7 @@ NavMeshAgent:
   m_Speed: 6
   m_Acceleration: 500
   avoidancePriority: 50
-  m_AngularSpeed: 500
+  m_AngularSpeed: 1000
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
