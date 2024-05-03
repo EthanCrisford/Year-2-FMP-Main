@@ -64,7 +64,7 @@ namespace FMP.ARPG
 
         public void OnTriggerEnter(Collider player)
         {
-            if (player.gameObject.tag == "Portal")
+            if (player.gameObject.tag == "Portal") 
             {
                 SceneManager.LoadScene(1);
             }
