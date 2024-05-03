@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class AnimationHandler : MonoBehaviour
 {
-    [SerializeField] float attackRange = 1f;
-    [SerializeField] float pickupRange = 1f;
+    [SerializeField] float attackRange;
+    [SerializeField] float pickupRange;
     Animator animator;
     PlayerController characterMovement;
     InteractableObjects target;
