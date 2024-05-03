@@ -15,9 +15,9 @@ public class AnimationHandler : MonoBehaviour
         characterMovement = GetComponent<PlayerController>();
     }
 
-    public void Pickup(InteractableObjects hoveringOverObject)
+    public void Pickup(InteractableObjects target)
     {
-        animator.SetTrigger("Pickup");
+        this.target = target;
         ProcessAction();
     }
 
