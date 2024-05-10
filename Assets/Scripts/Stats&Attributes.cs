@@ -65,7 +65,7 @@ public class StatGroup
 
     internal StatsValue Get(Stats statToGet)
     {
-        return stats[(int)statToGet]; 
+        return stats[(int)statToGet];
     }
 }
 
