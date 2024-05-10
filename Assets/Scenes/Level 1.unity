@@ -485,6 +485,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a8ce0e16e6c9a9b4a8c90e7309597837, type: 3}
       insertIndex: -1
       addedObject: {fileID: 397314820}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a8ce0e16e6c9a9b4a8c90e7309597837, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 397314821}
   m_SourcePrefab: {fileID: 100100000, guid: a8ce0e16e6c9a9b4a8c90e7309597837, type: 3}
 --- !u!1 &397314817 stripped
 GameObject:
@@ -541,6 +544,18 @@ CapsuleCollider:
   m_Height: 1.8251623
   m_Direction: 1
   m_Center: {x: 0, y: 0.823754, z: 0}
+--- !u!114 &397314821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 397314817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a826fef360389aa478dc7575eb6ee8aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &480377618
 GameObject:
   m_ObjectHideFlags: 0
@@ -5853,6 +5868,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sword
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ad0b9f4154d86114e9ca7da76a64414e, type: 3}
+      propertyPath: m_TagString
+      value: pickup
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -10761,7 +10780,7 @@ GameObject:
   - component: {fileID: 1264774820}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11021,6 +11040,7 @@ MonoBehaviour:
   textOnScreen: {fileID: 201872714}
   animationHandler: {fileID: 1273380503}
   hoveringOverObject: {fileID: 0}
+  player: {fileID: 0}
 --- !u!114 &1273380503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11033,8 +11053,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8507778b9440c624a9887cb005e42852, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 2.5
-  pickupRange: 2.5
+  attackRange: 3
+  pickupRange: 3
+  target: {fileID: 0}
+  state: 3
 --- !u!114 &1273380504
 MonoBehaviour:
   m_ObjectHideFlags: 0

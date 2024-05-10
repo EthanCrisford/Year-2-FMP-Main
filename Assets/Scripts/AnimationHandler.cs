@@ -7,7 +7,7 @@ public class AnimationHandler : MonoBehaviour
     {
         Attack,
         Pickup,
-        GoToTargetAttack,
+        GoToTargetInteract,
         Idle
     }
 
@@ -16,7 +16,8 @@ public class AnimationHandler : MonoBehaviour
     [SerializeField] float pickupRange;
     Animator animator;
     PlayerController characterMovement;
-    InteractableObjects target;
+    public GameObject target;
+    InteractableObjects InteractableObjects;
     public PlayerStates state;
 
     private void Awake()
@@ -27,92 +28,83 @@ public class AnimationHandler : MonoBehaviour
         state = PlayerStates.Idle;
     }
 
+    //this method should be called when E is pressed
     public void Pickup(InteractableObjects target)
     {
-        this.target = target;
-        ProcessAction();
+        this.InteractableObjects = target;
+
+        state = PlayerStates.GoToTargetInteract;
     }
 
-    //this method is called when the right mouse button is pressed
-    internal void Attack(InteractableObjects target)
+    //this method should be called when the right mouse button is pressed
+    public void Attack(InteractableObjects target)
     {
-        this.target = target;
-        //ProcessAction();
+        this.InteractableObjects = target;
 
-        state = PlayerStates.GoToTargetAttack;
+        state = PlayerStates.GoToTargetInteract;
     }
 
     private void Update()
     {
-        if( state == PlayerStates.Idle )
+        if(state == PlayerStates.Idle)
         {
-            //CheckForAttack();
+            print(" Idle state");
         }
 
         if (state == PlayerStates.Attack)
         {
-
+            print("attack state");
+            animator.SetTrigger("Attack");
+            characterMovement.Stop();
+            Character targetCharacterToAttack = target.GetComponent<Character>();
+            targetCharacterToAttack.TakeDamage(character.TakeStats(Stats.Damage).value);
+            state = PlayerStates.Idle;
         }
 
         if (state == PlayerStates.Pickup)
         {
-
+            print("pick up state");
+            animator.SetTrigger("Pickup");
+            characterMovement.Stop();
+            state = PlayerStates.Idle;
         }
 
-        if( state == PlayerStates.GoToTargetAttack )
+        if( state == PlayerStates.GoToTargetInteract)
         {
+            print("going to target");
             characterMovement.agent.SetDestination(target.transform.position);
 
-            //check for player reaching target
-            float distance = Vector3.Distance(transform.position, target.transform.position);
+            /*float distance = Vector3.Distance(transform.position, target.transform.position);*/
 
-            print("attack range=" + attackRange + "  distance=" + distance);
+            float distanceX = characterMovement.transform.position.x - target.transform.position.x;
+            float distanceY = characterMovement.transform.position.y - target.transform.position.y;
+            float distanceZ = characterMovement.transform.position.z - target.transform.position.z;
 
+            float totalDis = distanceX * distanceY * distanceZ;
+            //print(totalDis);
 
-            if (distance < attackRange)
+            if (totalDis < attackRange && target.gameObject.tag == "enemy")
             {
-                //player has reached target
                 state = PlayerStates.Attack;
-                animator.SetTrigger("Attack");
-                characterMovement.Stop();
-                Character targetCharacterToAttack = target.GetComponent<Character>();
-                targetCharacterToAttack.TakeDamage(character.TakeStats(Stats.Damage).value);
+            }
+            else
+            {
+                state = PlayerStates.Idle;
+            }
+
+            if (totalDis < pickupRange && target.gameObject.tag == "pickup")
+            {
+                state = PlayerStates.Pickup;
+            }
+            else
+            {
+                state = PlayerStates.Idle;
             }
         }
     }
 
-    public void ProcessAction()
+    public void AssignTarget(GameObject targett)
     {
-        float distance = Vector3.Distance(transform.position, target.transform.position);
-
-        print("attack range=" + attackRange + "  distance=" + distance);
-
-        if (distance < attackRange)
-        {
-            print("do attack");
-            characterMovement.Stop();
-            animator.SetTrigger("Attack");
-
-            Character targetCharacterToAttack = target.GetComponent<Character>();
-
-            targetCharacterToAttack.TakeDamage(character.TakeStats(Stats.Damage).value);
-
-            //target = null;
-        }
-        else
-        {
-            characterMovement.agent.SetDestination(target.transform.position);
-        }
-
-        if (distance < pickupRange)
-        {
-            characterMovement.Stop();
-            animator.SetTrigger("Pickup");
-            //target = null;
-        }
-        else
-        {
-            characterMovement.agent.SetDestination(target.transform.position);
-        }
+        target = targett;
     }
 }

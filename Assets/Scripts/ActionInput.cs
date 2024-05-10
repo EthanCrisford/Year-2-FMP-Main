@@ -15,20 +15,14 @@ public class ActionInput : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (interactInput.hoveringOverObject != null)
-            {
-                Debug.Log("Picking up");
-                animationHandler.Pickup(interactInput.hoveringOverObject);
-            }
+            Debug.Log("Picking up");
+            animationHandler.Pickup(interactInput.hoveringOverObject);
+        }
 
-            if (Input.GetMouseButtonDown(1))
-            {
-                if (interactInput.hoveringOverObject != null)
-                {
-                    Debug.Log("Attacking");
-                    animationHandler.Attack(interactInput.hoveringOverObject);
-                }
-            }
+        if (Input.GetMouseButtonDown(1))
+        {
+            Debug.Log("Attacking");
+            animationHandler.Attack(interactInput.hoveringOverObject);
         }
     }
 }

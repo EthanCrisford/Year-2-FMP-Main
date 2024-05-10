@@ -7,8 +7,9 @@ public class InteractInput : MonoBehaviour
 
     [HideInInspector]
     public InteractableObjects hoveringOverObject;
+    public GameObject player;
 
-    void Update()
+    public void Update()
     {
         CheckInteractObject();
 
@@ -16,7 +17,6 @@ public class InteractInput : MonoBehaviour
         {
             if (hoveringOverObject != null)
             {
-                hoveringOverObject.Interact();
                 animationHandler.Pickup(hoveringOverObject);
             }
         }
@@ -25,7 +25,6 @@ public class InteractInput : MonoBehaviour
         {
             if (hoveringOverObject != null)
             {
-                hoveringOverObject.Interact();
                 animationHandler.Attack(hoveringOverObject);
             }
         }
@@ -41,8 +40,10 @@ public class InteractInput : MonoBehaviour
             InteractableObjects interactableObject = hit.transform.GetComponent<InteractableObjects>();
             if (interactableObject != null)
             {
+                animationHandler.AssignTarget(hit.collider.gameObject);
                 hoveringOverObject = interactableObject;
                 textOnScreen.text = hoveringOverObject.objectName;
+                //player.GetComponent<InteractableObjects>();
             }
             else
             {

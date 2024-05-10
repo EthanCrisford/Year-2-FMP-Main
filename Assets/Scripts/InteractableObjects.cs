@@ -9,9 +9,4 @@ public class InteractableObjects : MonoBehaviour
     {
         objectName = transform.name;
     }
-
-    public void Interact()
-    {
-        //Debug.Log(postMessage);
-    }
 }

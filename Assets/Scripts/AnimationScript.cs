@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AnimationScript : MonoBehaviour
@@ -8,10 +6,11 @@ public class AnimationScript : MonoBehaviour
     {
         print("attack over");
         GetComponentInParent<AnimationHandler>().state = AnimationHandler.PlayerStates.Idle;
-
     }
 
-
-
-
+    public void PickupEnded()
+    {
+        print("pickup over");
+        GetComponentInParent<AnimationHandler>().state = AnimationHandler.PlayerStates.Idle;
+    }
 }
