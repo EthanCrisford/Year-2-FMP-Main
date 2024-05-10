@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class AnimationScript : MonoBehaviour
 {
@@ -13,4 +14,6 @@ public class AnimationScript : MonoBehaviour
         print("pickup over");
         GetComponentInParent<AnimationHandler>().state = AnimationHandler.PlayerStates.Idle;
     }
+
+
 }

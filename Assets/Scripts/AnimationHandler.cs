@@ -7,7 +7,8 @@ public class AnimationHandler : MonoBehaviour
     {
         Attack,
         Pickup,
-        GoToTargetInteract,
+        GoToTargetAttack,
+        GoToTargetPickup,
         Idle
     }
 
@@ -19,6 +20,7 @@ public class AnimationHandler : MonoBehaviour
     public GameObject target;
     InteractableObjects InteractableObjects;
     public PlayerStates state;
+    float distance;
 
     private void Awake()
     {
@@ -33,7 +35,8 @@ public class AnimationHandler : MonoBehaviour
     {
         this.InteractableObjects = target;
 
-        state = PlayerStates.GoToTargetInteract;
+        if( target.tag == "pickup")
+            state = PlayerStates.GoToTargetPickup;
     }
 
     //this method should be called when the right mouse button is pressed
@@ -41,12 +44,20 @@ public class AnimationHandler : MonoBehaviour
     {
         this.InteractableObjects = target;
 
-        state = PlayerStates.GoToTargetInteract;
+        if (target.tag == "enemy")
+        {
+            state = PlayerStates.GoToTargetAttack;
+        }
     }
 
     private void Update()
     {
-        if(state == PlayerStates.Idle)
+        distance = Vector3.Distance(transform.position, target.transform.position);
+        print("distance=" + distance);
+
+        print("State=" + state);
+
+        if (state == PlayerStates.Idle)
         {
             print(" Idle state");
         }
@@ -69,42 +80,46 @@ public class AnimationHandler : MonoBehaviour
             state = PlayerStates.Idle;
         }
 
-        if( state == PlayerStates.GoToTargetInteract)
+        if( state == PlayerStates.GoToTargetAttack)
         {
-            print("going to target");
+            print("going to target attack");
             characterMovement.agent.SetDestination(target.transform.position);
 
-            /*float distance = Vector3.Distance(transform.position, target.transform.position);*/
-
-            float distanceX = characterMovement.transform.position.x - target.transform.position.x;
-            float distanceY = characterMovement.transform.position.y - target.transform.position.y;
-            float distanceZ = characterMovement.transform.position.z - target.transform.position.z;
-
-            float totalDis = distanceX * distanceY * distanceZ;
-            //print(totalDis);
-
-            if (totalDis < attackRange && target.gameObject.tag == "enemy")
+            if (distance < attackRange && target.gameObject.tag == "enemy")
             {
                 state = PlayerStates.Attack;
             }
-            else
-            {
-                state = PlayerStates.Idle;
-            }
+        }
 
-            if (totalDis < pickupRange && target.gameObject.tag == "pickup")
+        if (state == PlayerStates.GoToTargetPickup)
+        {
+            print("going to target pickup");
+            characterMovement.agent.SetDestination(target.transform.position);
+            
+            if ((distance < pickupRange) && (target.gameObject.tag == "pickup"))
             {
                 state = PlayerStates.Pickup;
             }
-            else
-            {
-                state = PlayerStates.Idle;
-            }
         }
+
+
     }
 
     public void AssignTarget(GameObject targett)
     {
         target = targett;
     }
+
+    private void OnGUI()
+    {
+        string text = "";
+
+        text = "\nstate=" + state;
+        text += "\ndistance=" + distance;
+        text += "\ntarget=" + target.transform.position;
+
+        GUI.Label(new Rect(10, 10, 1500, 900), text);
+
+    }
+
 }
