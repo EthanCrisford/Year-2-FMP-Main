@@ -1,9 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.AI;
-using System;
 using UnityEngine.SceneManagement;
-using Unity.VisualScripting;
 
 namespace FMP.ARPG
 {

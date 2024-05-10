@@ -21,7 +21,7 @@ public class InteractInput : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonDown(1)) 
+        if (Input.GetMouseButtonDown(1))
         {
             if (hoveringOverObject != null)
             {

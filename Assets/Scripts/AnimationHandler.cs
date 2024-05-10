@@ -3,8 +3,9 @@ using UnityEngine;
 
 public class AnimationHandler : MonoBehaviour
 {
-    [SerializeField] float attackRange = 1f;
-    [SerializeField] float pickupRange = 1f;
+    Character character;
+    [SerializeField] float attackRange;
+    [SerializeField] float pickupRange;
     Animator animator;
     PlayerController characterMovement;
     InteractableObjects target;
@@ -13,6 +14,7 @@ public class AnimationHandler : MonoBehaviour
     {
         animator = GetComponentInChildren<Animator>();
         characterMovement = GetComponent<PlayerController>();
+        character = GetComponent<Character>();
     }
 
     public void Pickup(InteractableObjects target)
@@ -43,6 +45,11 @@ public class AnimationHandler : MonoBehaviour
         {
             characterMovement.Stop();
             animator.SetTrigger("Attack");
+
+            Character targetCharacterToAttack = target.GetComponent<Character>();
+
+            targetCharacterToAttack.TakeDamage(character.TakeStats(Stats.Damage).value); 
+
             target = null;
         }
         else
