@@ -11056,6 +11056,7 @@ MonoBehaviour:
   attackRange: 3
   pickupRange: 3
   target: {fileID: 0}
+  state: 0
 --- !u!114 &1273380504
 MonoBehaviour:
   m_ObjectHideFlags: 0
