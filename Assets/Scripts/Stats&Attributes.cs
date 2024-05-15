@@ -8,10 +8,12 @@ public enum Stats
     Damage,
     Armour
 }
+
 public class Character : MonoBehaviour
 {
     [SerializeField] AttributeGroup attributes;
     [SerializeField] StatGroup stats;
+    [SerializeField] ValuePool lifePool;
 
     private void Start()
     {
@@ -20,16 +22,56 @@ public class Character : MonoBehaviour
 
         stats = new StatGroup();
         stats.Initisialisation();
+
+        lifePool = new ValuePool(stats.Get(Stats.Life));
     }
 
     public void TakeDamage(int damage)
     {
-        Debug.Log("Ouch :" +  damage);
+        damage = ApplyDefence(damage);
+
+        lifePool.currentValue -= damage;
+
+        Debug.Log("life pool" + lifePool.currentValue.ToString());
+
+        CheckDeath();
+    }
+
+    private int ApplyDefence(int damage)
+    {
+        damage -= stats.Get(Stats.Armour).value;
+
+        if (damage <= 0)
+        {
+            damage = 1;
+        }
+
+        return damage;
+    }
+
+    private void CheckDeath()
+    {
+        if (lifePool.currentValue <= 0)
+        {
+            Debug.Log("Enemy is dead");
+        }
     }
 
     public StatsValue TakeStats(Stats statToGet)
     {
         return stats.Get(statToGet);
+    }
+}
+
+public class ValuePool
+{
+    public int currentValue;
+    public StatsValue maxValue;
+
+    public ValuePool(StatsValue maxValue)
+    {
+        this.maxValue = maxValue;
+        this.currentValue = maxValue.value;
     }
 }
 

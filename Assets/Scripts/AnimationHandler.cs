@@ -53,13 +53,13 @@ public class AnimationHandler : MonoBehaviour
     private void Update()
     {
         distance = Vector3.Distance(transform.position, target.transform.position);
-        print("distance=" + distance);
+        //print("distance=" + distance);
 
-        print("State=" + state);
+        //print("State=" + state);
 
         if (state == PlayerStates.Idle)
         {
-            print(" Idle state");
+            //print(" Idle state");
         }
 
         if (state == PlayerStates.Attack)
@@ -101,8 +101,6 @@ public class AnimationHandler : MonoBehaviour
                 state = PlayerStates.Pickup;
             }
         }
-
-
     }
 
     public void AssignTarget(GameObject targett)
@@ -116,10 +114,8 @@ public class AnimationHandler : MonoBehaviour
 
         text = "\nstate=" + state;
         text += "\ndistance=" + distance;
-        text += "\ntarget=" + target.transform.position;
+        //text += "\ntarget=" + target.transform.position;
 
         GUI.Label(new Rect(10, 10, 1500, 900), text);
-
     }
-
 }
