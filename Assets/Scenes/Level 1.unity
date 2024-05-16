@@ -11770,6 +11770,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8491804894168431555, guid: a6237ad1870f9364d8abbcaede2076a6, type: 3}
+      propertyPath: stats.stats.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8491804894168431555, guid: a6237ad1870f9364d8abbcaede2076a6, type: 3}
+      propertyPath: stats.stats.Array.data[0].statType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8491804894168431555, guid: a6237ad1870f9364d8abbcaede2076a6, type: 3}
+      propertyPath: stats.stats.Array.data[1].statType
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9013933877341846782, guid: a6237ad1870f9364d8abbcaede2076a6, type: 3}
       propertyPath: m_Name
       value: PlayerController
