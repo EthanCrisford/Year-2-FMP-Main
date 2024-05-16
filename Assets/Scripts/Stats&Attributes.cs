@@ -1,12 +1,14 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 public enum Stats
 {
     Life,
     Damage,
-    Armour
+    Armour,
+    AttackSpeed
 }
 
 public class Character : MonoBehaviour
@@ -39,7 +41,7 @@ public class Character : MonoBehaviour
 
     private int ApplyDefence(int damage)
     {
-        damage -= stats.Get(Stats.Armour).value;
+        damage -= stats.Get(Stats.Armour).integer_value;
 
         if (damage <= 0)
         {
@@ -71,7 +73,7 @@ public class ValuePool
     public ValuePool(StatsValue maxValue)
     {
         this.maxValue = maxValue;
-        this.currentValue = maxValue.value;
+        this.currentValue = maxValue.integer_value;
     }
 }
 
@@ -79,12 +81,21 @@ public class ValuePool
 public class StatsValue
 {
     public Stats statType;
-    public int value;
+    public bool typeFloat;
+    public int integer_value;
+    public float float_value;
 
     public StatsValue(Stats statType, int value)
     {
         this.statType = statType;
-        this.value = value;
+        this.integer_value = value;
+    }
+
+    public StatsValue(Stats statType, float float_value)
+    {
+        this.statType = statType;
+        this.float_value = float_value;
+        typeFloat = true;
     }
 }
 
@@ -103,11 +114,16 @@ public class StatGroup
         stats.Add(new StatsValue(Stats.Life, 100));
         stats.Add(new StatsValue(Stats.Damage, 25));
         stats.Add(new StatsValue(Stats.Armour, 5));
+        stats.Add(new StatsValue(Stats.AttackSpeed, 1));
     }
 
     internal StatsValue Get(Stats statToGet)
     {
-        return stats[(int)statToGet];
+        int val = (int)statToGet;
+
+        Debug.Log("list size=" + stats.Count);
+        Debug.Log("stg=" + val);
+        return stats[val];
     }
 }
 
