@@ -14,6 +14,4 @@ public class AnimationScript : MonoBehaviour
         //print("pickup over");
         GetComponentInParent<AnimationHandler>().state = AnimationHandler.PlayerStates.Idle;
     }
-
-
 }
