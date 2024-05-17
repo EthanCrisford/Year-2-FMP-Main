@@ -37,8 +37,6 @@ namespace FMP.ARPG
         private void Update()
         {
             HandleInput();
-
-            
         }
 
         private void HandleInput()
@@ -65,7 +63,7 @@ namespace FMP.ARPG
         {
             if (player.gameObject.tag == "Portal") 
             {
-                SceneManager.LoadScene(1);
+                SceneManager.LoadScene(2);
             }
         }
 

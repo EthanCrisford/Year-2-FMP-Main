@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Spawn.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
+    path: Assets/Scenes/Essentials.unity
+    guid: 792a93965a528864888b7c0ce1b47b38
+  - enabled: 1
     path: Assets/Scenes/Level 1.unity
     guid: fa08fdc4cc5e4364c801276f2bbfcf0b
   m_configObjects: {}
