@@ -1,6 +1,6 @@
 using FMP.ARPG;
-using System;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class AnimationHandler : MonoBehaviour
 {
@@ -21,9 +21,13 @@ public class AnimationHandler : MonoBehaviour
     Animator animator;
     PlayerController characterMovement;
     public GameObject target;
-    InteractableObjects InteractableObjects;
+    Character enemyTarget;
+    InteractableObjects _target;
+    InteractableObjects InteractableObject;
     public PlayerStates state;
     float distance;
+    [SerializeField] NavMeshAgent agent;
+    public bool isEnemy;
 
     private void Awake()
     {
@@ -34,26 +38,21 @@ public class AnimationHandler : MonoBehaviour
         attackTimer = 1;// GetAttackTime();
     }
 
-    private void Start()
-    {
-
-    }
-
     //this method should be called when E is pressed
     public void Pickup(InteractableObjects target)
     {
-        this.InteractableObjects = target;
+        this.InteractableObject = target;
 
         if(target.tag == "pickup")
             state = PlayerStates.GoToTargetPickup;
     }
 
     //this method should be called when the right mouse button is pressed
-    public void Attack(InteractableObjects target)
+    public void Attack(Character target)
     {
-        this.InteractableObjects = target;
+        this.enemyTarget = target;
 
-        if (target.tag == "enemy")
+        if (target.tag == "enemy" || target.tag == "Player")
         {
             state = PlayerStates.GoToTargetAttack;
         }
@@ -73,11 +72,12 @@ public class AnimationHandler : MonoBehaviour
         if (state == PlayerStates.Idle)
         {
             //print(" Idle state");
+            animator.SetFloat("Move", agent.velocity.magnitude);
         }
 
         if (state == PlayerStates.Attack)
         {
-            print("attack state");
+            //print("attack state");
             AttackTimerTick();
 
             if (attackTimer > 0)
@@ -86,10 +86,12 @@ public class AnimationHandler : MonoBehaviour
             }
 
             attackTimer = GetAttackTime();
-            characterMovement.Stop();
+            if (!isEnemy)
+            {
+                characterMovement.Stop();
+            }
             animator.SetTrigger("Attack");
-            Character targetCharacterToAttack = target.GetComponent<Character>();
-            targetCharacterToAttack.TakeDamage(character.TakeStats(Stats.Damage).integer_value);
+            enemyTarget.TakeDamage(character.TakeStats(Stats.Damage).integer_value);
             
             state = PlayerStates.Idle;
         }
@@ -102,20 +104,32 @@ public class AnimationHandler : MonoBehaviour
             state = PlayerStates.Idle;
         }
 
-        if( state == PlayerStates.GoToTargetAttack)
+        if(state == PlayerStates.GoToTargetAttack)
         {
-            print("going to target attack");
-            characterMovement.agent.SetDestination(target.transform.position);
-
-            if (distance < attackRange && target.gameObject.tag == "enemy")
+            //print("going to target attack");
+            if (isEnemy)
             {
-                state = PlayerStates.Attack;
+                agent.SetDestination(target.transform.position);
+
+                if (distance < attackRange && target.gameObject.tag == "enemy" || target.gameObject.tag == "Player")
+                {
+                    state = PlayerStates.Attack;
+                }
+            }
+            else
+            {
+                characterMovement.agent.SetDestination(target.transform.position);
+
+                if (distance < attackRange && target.gameObject.tag == "enemy" || target.gameObject.tag == "Player")
+                {
+                    state = PlayerStates.Attack;
+                }
             }
         }
 
         if (state == PlayerStates.GoToTargetPickup)
         {
-            print("going to target pickup");
+            //print("going to target pickup");
             characterMovement.agent.SetDestination(target.transform.position);
             
             if ((distance < pickupRange) && (target.gameObject.tag == "pickup"))
@@ -134,9 +148,9 @@ public class AnimationHandler : MonoBehaviour
         }
     }
 
-    public void AssignTarget(GameObject targett)
+    public void AssignTarget(GameObject _target)
     {
-        target = targett;
+        target = _target;
     }
 
     private void OnGUI()

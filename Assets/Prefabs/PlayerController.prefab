@@ -154,7 +154,15 @@ MonoBehaviour:
   attributes:
     attributeValues: []
   stats:
-    stats: []
+    stats:
+    - statType: 3
+      typeFloat: 0
+      integer_value: 0
+      float_value: 0
+    - statType: 0
+      typeFloat: 0
+      integer_value: 0
+      float_value: 0
 --- !u!114 &3065405573849700713
 MonoBehaviour:
   m_ObjectHideFlags: 0

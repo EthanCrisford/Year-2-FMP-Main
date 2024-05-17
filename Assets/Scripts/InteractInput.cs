@@ -7,13 +7,21 @@ public class InteractInput : MonoBehaviour
     [SerializeField] UIBar hpBar;
 
     public AnimationHandler animationHandler;
+    InteractInput interactInput;
 
     GameObject currentHoverOverObject;
 
     [HideInInspector]
     public InteractableObjects hoveringOverObject;
     public GameObject player;
-    Character hoveringOverCharcter;
+    [HideInInspector]
+    public Character hoveringOverCharacter;
+
+    private void Awake()
+    {
+        interactInput = GetComponent<InteractInput>();
+        animationHandler = GetComponent<AnimationHandler>();
+    }
 
     public void Update()
     {
@@ -21,7 +29,7 @@ public class InteractInput : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (hoveringOverObject != null)
+            if (interactInput.hoveringOverObject != null)
             {
                 animationHandler.Pickup(hoveringOverObject);
             }
@@ -29,9 +37,9 @@ public class InteractInput : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1))
         {
-            if (hoveringOverObject != null)
+            if (interactInput.hoveringOverCharacter != null)
             {
-                animationHandler.Attack(hoveringOverObject);
+                animationHandler.Attack(hoveringOverCharacter);
             }
         }
     }
@@ -58,13 +66,13 @@ public class InteractInput : MonoBehaviour
         {
             animationHandler.AssignTarget(hit.collider.gameObject);
             hoveringOverObject = interactableObject;
-            hoveringOverCharcter = interactableObject.GetComponent<Character>();
+            hoveringOverCharacter = interactableObject.GetComponent<Character>();
             textOnScreen.text = hoveringOverObject.objectName;
             //player.GetComponent<InteractableObjects>();
         }
         else
         {
-            hoveringOverCharcter = null;
+            hoveringOverCharacter = null;
             hoveringOverObject = null;
             textOnScreen.text = "";
         }
@@ -73,9 +81,9 @@ public class InteractInput : MonoBehaviour
 
     private void UpdateHPBar()
     {
-        if (hoveringOverCharcter != null)
+        if (hoveringOverCharacter != null)
         {
-            hpBar.Show(hoveringOverCharcter.lifePool);
+            hpBar.Show(hoveringOverCharacter.lifePool);
         }
         else
         {

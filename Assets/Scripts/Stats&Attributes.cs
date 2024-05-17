@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 public enum Stats
@@ -16,6 +15,7 @@ public class Character : MonoBehaviour
     [SerializeField] AttributeGroup attributes;
     [SerializeField] StatGroup stats;
     public ValuePool lifePool;
+    //public AnimationHandler enemyTarget;
 
     private void Start()
     {
@@ -121,8 +121,8 @@ public class StatGroup
     {
         int val = (int)statToGet;
 
-        Debug.Log("list size=" + stats.Count);
-        Debug.Log("stg=" + val);
+        //Debug.Log("list size=" + stats.Count);
+        //Debug.Log("stg=" + val);
         return stats[val];
     }
 }

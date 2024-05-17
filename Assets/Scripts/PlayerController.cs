@@ -38,7 +38,7 @@ namespace FMP.ARPG
         {
             HandleInput();
 
-            animator.SetFloat("Move", agent.velocity.magnitude);
+            
         }
 
         private void HandleInput()
