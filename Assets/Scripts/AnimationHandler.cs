@@ -14,15 +14,18 @@ public class AnimationHandler : MonoBehaviour
     }
 
     Character character;
+
     [SerializeField] float attackRange;
     [SerializeField] float defaultTimeToAttack;
     float attackTimer;
     [SerializeField] float pickupRange;
+
     Animator animator;
     PlayerController characterMovement;
     public GameObject target;
     Character enemyTarget;
     InteractableObjects _target;
+
     InteractableObjects InteractableObject;
     public PlayerStates state;
     float distance;
