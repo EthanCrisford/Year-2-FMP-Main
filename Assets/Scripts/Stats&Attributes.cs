@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.TextCore.Text;
 
 public enum Stats
@@ -16,6 +17,7 @@ public class Character : MonoBehaviour
 {
     [SerializeField] AttributeGroup attributes;
     [SerializeField] StatGroup stats;
+    public GameObject target;
     public ValuePool lifePool;
     //public AnimationHandler enemyTarget;
     public bool isDead;
@@ -50,6 +52,11 @@ public class Character : MonoBehaviour
         {
             isDead = true;
             animator.SetBool("Dead", character.isDead);
+        }
+
+        if (lifePool.currentValue > 0 && (target.gameObject.tag == "Player"))
+        {
+            SceneManager.LoadScene("Death");
         }
     }
 
