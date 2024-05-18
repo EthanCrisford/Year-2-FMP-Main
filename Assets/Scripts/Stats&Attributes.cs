@@ -1,13 +1,15 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public enum Stats
 {
     Life,
     Damage,
     Armour,
-    AttackSpeed
+    AttackSpeed,
+    MoveSpeed
 }
 
 public class Character : MonoBehaviour
@@ -16,6 +18,9 @@ public class Character : MonoBehaviour
     [SerializeField] StatGroup stats;
     public ValuePool lifePool;
     //public AnimationHandler enemyTarget;
+    public bool isDead;
+    Character character;
+    Animator animator;
 
     private void Start()
     {
@@ -34,9 +39,18 @@ public class Character : MonoBehaviour
 
         lifePool.currentValue -= damage;
 
-        Debug.Log("life pool" + lifePool.currentValue.ToString());
+        //Debug.Log("life pool" + lifePool.currentValue.ToString());
 
         CheckDeath();
+    }
+
+    private void CheckDeath()
+    {
+        if (lifePool.currentValue <= 0)
+        {
+            isDead = true;
+            animator.SetBool("Dead", character.isDead);
+        }
     }
 
     private int ApplyDefence(int damage)
@@ -51,13 +65,7 @@ public class Character : MonoBehaviour
         return damage;
     }
 
-    private void CheckDeath()
-    {
-        if (lifePool.currentValue <= 0)
-        {
-            Debug.Log("Enemy is dead");
-        }
-    }
+    
 
     public StatsValue TakeStats(Stats statToGet)
     {
@@ -115,6 +123,7 @@ public class StatGroup
         stats.Add(new StatsValue(Stats.Damage, 25));
         stats.Add(new StatsValue(Stats.Armour, 5));
         stats.Add(new StatsValue(Stats.AttackSpeed, 1));
+        stats.Add(new StatsValue(Stats.MoveSpeed, 1));
     }
 
     internal StatsValue Get(Stats statToGet)
@@ -146,6 +155,7 @@ public class AttributeValue
         this.value = value;
     }
 }
+
 
 [Serializable]
 public class AttributeGroup

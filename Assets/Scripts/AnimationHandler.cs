@@ -10,7 +10,8 @@ public class AnimationHandler : MonoBehaviour
         Pickup,
         GoToTargetAttack,
         GoToTargetPickup,
-        Idle
+        Idle,
+        Dead
     }
 
     Character character;
@@ -24,6 +25,7 @@ public class AnimationHandler : MonoBehaviour
     PlayerController characterMovement;
     public GameObject target;
     Character enemyTarget;
+    Character charcater;
     InteractableObjects _target;
 
     InteractableObjects InteractableObject;
