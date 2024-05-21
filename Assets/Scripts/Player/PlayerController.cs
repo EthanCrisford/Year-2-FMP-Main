@@ -86,7 +86,7 @@ namespace FMP.ARPG
             }
         }
 
-        internal void Stop()
+        public void Stop()
         {
             agent.isStopped = true;
         }

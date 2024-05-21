@@ -49,6 +49,7 @@ public class AnimationHandler : MonoBehaviour
         this.InteractableObject = target;
 
         if(target.tag == "pickup")
+
             state = PlayerStates.GoToTargetPickup;
     }
 
