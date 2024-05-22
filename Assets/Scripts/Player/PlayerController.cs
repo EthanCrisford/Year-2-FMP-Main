@@ -82,7 +82,7 @@ namespace FMP.ARPG
         {
             if (player.gameObject.tag == "Portal") 
             {
-                SceneManager.LoadScene(2);
+                SceneManager.LoadScene("Level 1");
             }
         }
 

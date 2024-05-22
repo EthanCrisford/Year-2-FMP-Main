@@ -54,7 +54,7 @@ public class Character : MonoBehaviour
             animator.SetBool("Dead", character.isDead);
         }
 
-        if (lifePool.currentValue > 0 && (target.gameObject.tag == "Player"))
+        if (lifePool.currentValue > 0 && (gameObject.tag == "Player"))
         {
             SceneManager.LoadScene("Death");
         }
