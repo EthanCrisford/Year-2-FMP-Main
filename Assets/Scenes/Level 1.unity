@@ -420,29 +420,6 @@ NavMeshAgent:
   m_CorrespondingSourceObject: {fileID: 8688617568058322495, guid: a6237ad1870f9364d8abbcaede2076a6, type: 3}
   m_PrefabInstance: {fileID: 259765721090074475}
   m_PrefabAsset: {fileID: 0}
---- !u!136 &178352277
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 178352268}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.37422252
-  m_Height: 2.220809
-  m_Direction: 1
-  m_Center: {x: -0.12577753, y: 0.6104042, z: 3.1263414e-16}
 --- !u!114 &178352278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6388,6 +6365,7 @@ MonoBehaviour:
     attributeValues: []
   stats:
     stats: []
+  target: {fileID: 0}
   isDead: 0
 --- !u!136 &873228581
 CapsuleCollider:
@@ -11774,6 +11752,7 @@ MonoBehaviour:
   inventoryPanel: {fileID: 265612041}
   statsPanel: {fileID: 2127563550}
   questPanel: {fileID: 373076609}
+  quitToMenu: {fileID: 0}
 --- !u!1 &1472897069
 GameObject:
   m_ObjectHideFlags: 0
@@ -13187,17 +13166,50 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerController
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5828097671068843155, guid: a6237ad1870f9364d8abbcaede2076a6, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 9013933877341846782, guid: a6237ad1870f9364d8abbcaede2076a6, type: 3}
-      insertIndex: 3
-      addedObject: {fileID: 178352277}
-    - targetCorrespondingSourceObject: {fileID: 9013933877341846782, guid: a6237ad1870f9364d8abbcaede2076a6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 178352278}
+    - targetCorrespondingSourceObject: {fileID: 2496294813341517565, guid: a6237ad1870f9364d8abbcaede2076a6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 259765721090074477}
   m_SourcePrefab: {fileID: 100100000, guid: a6237ad1870f9364d8abbcaede2076a6, type: 3}
+--- !u!1 &259765721090074476 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2496294813341517565, guid: a6237ad1870f9364d8abbcaede2076a6, type: 3}
+  m_PrefabInstance: {fileID: 259765721090074475}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &259765721090074477
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259765721090074476}
+  serializedVersion: 4
+  m_Mass: 100
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &260324541172374495
 GameObject:
   m_ObjectHideFlags: 0
@@ -15022,6 +15034,7 @@ MonoBehaviour:
     attributeValues: []
   stats:
     stats: []
+  target: {fileID: 0}
   isDead: 0
 --- !u!195 &6344583918843779170
 NavMeshAgent:

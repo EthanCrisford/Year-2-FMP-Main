@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class Menu : MonoBehaviour
 {
@@ -18,7 +17,6 @@ public class Menu : MonoBehaviour
 
     public void HowToPlayButton()
     {
-        how2playPanel.SetActive(!how2playPanel.activeInHierarchy);
         how2playPanel.SetActive(true);
     }
 

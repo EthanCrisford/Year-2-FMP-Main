@@ -175,7 +175,7 @@ public class AnimationHandler : MonoBehaviour
         attackTime /= character.TakeStats(Stats.AttackSpeed).integer_value;
         //attackTime /= 1;
 
-        print (attackTime);
+        //print (attackTime);
         return attackTime;
     }
 }
