@@ -5,6 +5,9 @@ public class UIPanelManager : MonoBehaviour
     [SerializeField] GameObject inventoryPanel;
     [SerializeField] GameObject statsPanel;
     [SerializeField] GameObject questPanel;
+    [SerializeField] GameObject quitToMenu;
+
+    private bool menuOpen;
 
     private void Update()
     {
@@ -21,6 +24,18 @@ public class UIPanelManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.S))
         {
             OpenStats();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            OpenMenu();
+            menuOpen = true;
+        }
+
+        if (menuOpen == true && Input.GetKeyUp(KeyCode.Escape))
+        {
+            CloseMenu();
+            menuOpen = false;
         }
     }
 
@@ -39,5 +54,15 @@ public class UIPanelManager : MonoBehaviour
     {
         questPanel.SetActive(!questPanel.activeInHierarchy);
         statsPanel.SetActive(false);
+    }
+
+    public void OpenMenu()
+    {
+        quitToMenu.SetActive(true);
+    }
+
+    public void CloseMenu()
+    {
+        quitToMenu.SetActive(false);
     }
 }

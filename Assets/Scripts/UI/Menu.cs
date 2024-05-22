@@ -21,4 +21,9 @@ public class Menu : MonoBehaviour
         how2playPanel.SetActive(!how2playPanel.activeInHierarchy);
         how2playPanel.SetActive(true);
     }
+
+    public void QuitToMenu()
+    {
+        SceneManager.LoadScene("Menu");
+    }
 }
