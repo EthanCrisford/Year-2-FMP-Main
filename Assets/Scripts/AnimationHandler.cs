@@ -25,7 +25,6 @@ public class AnimationHandler : MonoBehaviour
     PlayerController characterMovement;
     public GameObject target;
     Character enemyTarget;
-    Character charcater;
     InteractableObjects _target;
 
     InteractableObjects InteractableObject;
@@ -144,7 +143,6 @@ public class AnimationHandler : MonoBehaviour
             }
         }
     }
-
     private void AttackTimerTick()
     {
         if (attackTimer > 0f)
@@ -159,7 +157,7 @@ public class AnimationHandler : MonoBehaviour
         target = _target;
     }
 
-    private void OnGUI()
+    /*private void OnGUI()
     {
         string text = "";
 
@@ -168,7 +166,8 @@ public class AnimationHandler : MonoBehaviour
         //text += "\ntarget=" + target.transform.position;
 
         GUI.Label(new Rect(10, 10, 1500, 900), text);
-    }
+    }*/
+
     private float GetAttackTime()
     {
         float attackTime = defaultTimeToAttack;
