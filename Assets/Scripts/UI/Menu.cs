@@ -15,7 +15,6 @@ public class Menu : MonoBehaviour
     {
         SceneManager.LoadScene("Spawn");
     }
-
     public void QuitGame()
     {
         Application.Quit();

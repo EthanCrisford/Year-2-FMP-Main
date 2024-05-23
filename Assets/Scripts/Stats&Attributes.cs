@@ -21,8 +21,8 @@ public class Character : MonoBehaviour
     public ValuePool lifePool;
     //public AnimationHandler enemyTarget;
     public bool isDead;
-    Character character;
     Animator animator;
+    public GameObject player;
 
     private void Start()
     {
@@ -31,6 +31,8 @@ public class Character : MonoBehaviour
 
         stats = new StatGroup();
         stats.Initisialisation();
+
+        animator = GetComponent<Animator>();
 
         lifePool = new ValuePool(stats.Get(Stats.Life));
     }
@@ -51,12 +53,14 @@ public class Character : MonoBehaviour
         if (lifePool.currentValue <= 0)
         {
             isDead = true;
-            animator.SetBool("Dead", character.isDead);
+            player.GetComponent<Animator>().SetBool("Dead", true);
         }
+
+        print("lifepool=" + lifePool.currentValue);
 
         if (lifePool.currentValue <= 0 && (gameObject.tag == "Player"))
         {
-            //SceneManager.LoadScene("Death");
+            SceneManager.LoadScene("Death");
             print("Player dead");
         }
     }
