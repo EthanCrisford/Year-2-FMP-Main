@@ -1,6 +1,7 @@
 using FMP.ARPG;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.VFX;
 
 public class AnimationHandler : MonoBehaviour
 {
@@ -32,6 +33,7 @@ public class AnimationHandler : MonoBehaviour
     float distance;
     [SerializeField] NavMeshAgent agent;
     public bool isEnemy;
+    public VisualEffect slashVFX;
 
     private void Awake()
     {
@@ -95,7 +97,9 @@ public class AnimationHandler : MonoBehaviour
             {
                 characterMovement.Stop();
             }
+
             animator.SetTrigger("Attack");
+            slashVFX.Play();
             enemyTarget.TakeDamage(character.TakeStats(Stats.Damage).integer_value);
             
             state = PlayerStates.Idle;
@@ -157,7 +161,7 @@ public class AnimationHandler : MonoBehaviour
         target = _target;
     }
 
-    private void OnGUI()
+    /*private void OnGUI()
     {
         string text = "";
 
@@ -166,7 +170,7 @@ public class AnimationHandler : MonoBehaviour
         //text += "\ntarget=" + target.transform.position;
 
         GUI.Label(new Rect(10, 10, 1500, 900), text);
-    }
+    }*/
 
     private float GetAttackTime()
     {
