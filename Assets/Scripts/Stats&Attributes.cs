@@ -63,6 +63,11 @@ public class Character : MonoBehaviour
             SceneManager.LoadScene("Death");
             print("Player dead");
         }
+
+        if (lifePool.currentValue <= 0 && (gameObject.tag == "enemy"))
+        {
+            Destroy(gameObject);
+        }
     }
 
     private int ApplyDefence(int damage)
