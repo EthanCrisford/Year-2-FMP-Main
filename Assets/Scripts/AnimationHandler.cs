@@ -116,7 +116,7 @@ public class AnimationHandler : MonoBehaviour
             {
                 agent.SetDestination(target.transform.position);
 
-                if (distance < attackRange && target.gameObject.tag == "enemy" || target.gameObject.tag == "Player")
+                if (distance < attackRange && (target.gameObject.tag == "enemy" || target.gameObject.tag == "Player")  )
                 {
                     state = PlayerStates.Attack;
                 }
@@ -125,7 +125,7 @@ public class AnimationHandler : MonoBehaviour
             {
                 characterMovement.agent.SetDestination(target.transform.position);
 
-                if (distance < attackRange && target.gameObject.tag == "enemy" || target.gameObject.tag == "Player")
+                if (distance < attackRange && (target.gameObject.tag == "enemy" || target.gameObject.tag == "Player"))
                 {
                     state = PlayerStates.Attack;
                 }
@@ -157,7 +157,7 @@ public class AnimationHandler : MonoBehaviour
         target = _target;
     }
 
-    /*private void OnGUI()
+    private void OnGUI()
     {
         string text = "";
 
@@ -166,7 +166,7 @@ public class AnimationHandler : MonoBehaviour
         //text += "\ntarget=" + target.transform.position;
 
         GUI.Label(new Rect(10, 10, 1500, 900), text);
-    }*/
+    }
 
     private float GetAttackTime()
     {

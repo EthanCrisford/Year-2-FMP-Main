@@ -24,6 +24,8 @@ public class InteractInput : MonoBehaviour
     public AnimationHandler playerMovement;
     public PlayerController playerController;
 
+    public LayerMask hoverMask;
+
     private void Awake()
     {
         interactInput = GetComponent<InteractInput>();
@@ -82,15 +84,22 @@ public class InteractInput : MonoBehaviour
         }
     }
 
+    public Camera myCamera;
+
     private void CheckInteractObject()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = myCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit))
+        Debug.DrawRay( ray.origin, ray.direction, Color.yellow );   
+
+        if (Physics.Raycast(ray, out hit, 1000000))
         {
+            //print("cho=" + currentHoverOverObject);
+            //print("mouse hover=" + hit.transform.gameObject.name);
             if (currentHoverOverObject != hit.transform.gameObject)
             {
+                
                 currentHoverOverObject = hit.transform.gameObject;
                 UpdateInteractableObject(hit);
             }
