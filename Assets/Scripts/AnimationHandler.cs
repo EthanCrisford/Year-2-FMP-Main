@@ -27,7 +27,7 @@ public class AnimationHandler : MonoBehaviour
     public GameObject target;
     Character enemyTarget;
     InteractableObjects _target;
-    public Transform lookAtTarget;
+    //public Transform lookAtTarget;
 
     InteractableObjects InteractableObject;
     public PlayerStates state;
@@ -81,6 +81,11 @@ public class AnimationHandler : MonoBehaviour
         {
             //print(" Idle state");
             animator.SetFloat("Move", agent.velocity.magnitude);
+
+            if (target == null)
+            {
+                return;
+            }
         }
 
         if (state == PlayerStates.Attack)
