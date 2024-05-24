@@ -9,7 +9,12 @@ public class Victory : MonoBehaviour
         enemyCount++;
     }
 
-    private void Die()
+    public void Update()
+    {
+        print(enemyCount);
+    }
+
+    public void Die()
     {
         enemyCount--;
     }

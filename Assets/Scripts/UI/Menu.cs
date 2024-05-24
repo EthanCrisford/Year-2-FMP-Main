@@ -15,6 +15,12 @@ public class Menu : MonoBehaviour
     {
         SceneManager.LoadScene("Spawn");
     }
+
+    public void TryAgain()
+    {
+        SceneManager.LoadScene("Level 1");
+    }
+
     public void QuitGame()
     {
         Application.Quit();

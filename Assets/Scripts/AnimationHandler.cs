@@ -82,10 +82,7 @@ public class AnimationHandler : MonoBehaviour
             //print(" Idle state");
             animator.SetFloat("Move", agent.velocity.magnitude);
 
-            if (target == null)
-            {
-                return;
-            }
+            
         }
 
         if (state == PlayerStates.Attack)
@@ -138,6 +135,11 @@ public class AnimationHandler : MonoBehaviour
                 if (distance < attackRange && (target.gameObject.tag == "enemy" || target.gameObject.tag == "Player"))
                 {
                     state = PlayerStates.Attack;
+                }
+
+                if (target == null)
+                {
+                    return;
                 }
             }
         }
