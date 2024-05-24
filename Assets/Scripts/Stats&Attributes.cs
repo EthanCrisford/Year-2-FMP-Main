@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.TextCore.Text;
 
 public enum Stats
 {
@@ -53,10 +52,10 @@ public class Character : MonoBehaviour
         if (lifePool.currentValue <= 0)
         {
             isDead = true;
-            player.GetComponent<Animator>().SetBool("Dead", true);
+            player.GetComponentInChildren<Animator>().SetBool("Dead", true);
         }
 
-        print("lifepool=" + lifePool.currentValue);
+        print("Health=" + lifePool.currentValue);
 
         if (lifePool.currentValue <= 0 && (gameObject.tag == "Player"))
         {
@@ -66,6 +65,7 @@ public class Character : MonoBehaviour
 
         if (lifePool.currentValue <= 0 && (gameObject.tag == "enemy"))
         {
+            print("enemy died");
             Destroy(gameObject);
         }
     }
@@ -81,8 +81,6 @@ public class Character : MonoBehaviour
 
         return damage;
     }
-
-    
 
     public StatsValue TakeStats(Stats statToGet)
     {
@@ -172,7 +170,6 @@ public class AttributeValue
         this.value = value;
     }
 }
-
 
 [Serializable]
 public class AttributeGroup

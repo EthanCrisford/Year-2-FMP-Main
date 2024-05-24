@@ -27,6 +27,7 @@ public class AnimationHandler : MonoBehaviour
     public GameObject target;
     Character enemyTarget;
     InteractableObjects _target;
+    public Transform lookAtTarget;
 
     InteractableObjects InteractableObject;
     public PlayerStates state;

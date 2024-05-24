@@ -55,6 +55,7 @@ public class InteractInput : MonoBehaviour
         {
             if (interactInput.hoveringOverCharacter != null)
             {
+                //transform.LookAt(hoveringOverCharacter.transform);
                 animationHandler.Attack(hoveringOverCharacter);
             }
         }
