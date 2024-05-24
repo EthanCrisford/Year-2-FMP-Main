@@ -7,7 +7,13 @@ public class UIPanelManager : MonoBehaviour
     [SerializeField] GameObject questPanel;
     [SerializeField] GameObject quitToMenu;
 
+
     private bool menuOpen;
+
+    private void Start()
+    {
+        menuOpen = false;
+    }
 
     private void Update()
     {
@@ -28,14 +34,18 @@ public class UIPanelManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            OpenMenu();
-            menuOpen = true;
-        }
+            menuOpen = menuOpen ? false : true;
 
-        if (menuOpen == true && Input.GetKeyUp(KeyCode.Escape))
-        {
-            CloseMenu();
-            menuOpen = false;
+            if( menuOpen )
+            {
+                //Time.timeScale = 0;
+                OpenMenu();
+            }
+            else
+            {
+                Time.timeScale = 1;
+                CloseMenu();
+            }
         }
     }
 
@@ -63,6 +73,7 @@ public class UIPanelManager : MonoBehaviour
 
     public void CloseMenu()
     {
+        print("close menu");
         quitToMenu.SetActive(false);
     }
 }
